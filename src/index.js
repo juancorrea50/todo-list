@@ -2,13 +2,10 @@ import './styles.css';
 
 function createIndex(){
     const content = document.getElementById('content');
-    const element = document.createElement('div');
+    const header = document.querySelector('.welcome');
+    
 
-    element.textContent = 'Index Generated';
-
-    element.classList.add('welcome');
-
-    content.appendChild(element);
+    header.textContent = 'Welcome to your To-Do List!';
 
     return content;
 }
