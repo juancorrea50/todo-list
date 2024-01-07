@@ -116,7 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n\n\nfunction createIndex(){\n    const element = document.createElement('div');\n\n    element.textContent = 'Index Generated';\n\n    element.classList.add('welcome');\n\n    return element;\n}\ndocument.body.appendChild(createIndex());\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n\n\nfunction createIndex(){\n    const content = document.getElementById('content');\n    const element = document.createElement('div');\n\n    element.textContent = 'Index Generated';\n\n    element.classList.add('welcome');\n\n    content.appendChild(element);\n\n    return content;\n}\ndocument.body.appendChild(createIndex());\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
 
 /***/ })
 

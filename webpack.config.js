@@ -10,10 +10,7 @@ module.exports = {
   },
   plugins:[
     new hwp({
-        title:'To-Do List',
-        filename:'index.html',
-        inject:'head',
-        scriptLoading: 'defer',
+        template: './src/index.html',
     })
   ],
   module: {
