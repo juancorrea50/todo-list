@@ -1,10 +1,11 @@
+import createForm from "./createForm";
+
 const openModal = ()=>{
     //Create elements in modal
     const modalContainer = document.createElement('div');
     const modalContent = document.createElement('div');
     const closebtn = document.createElement('span');
-    //Modal Text //Replace with form elements//
-    const modalText = document.createElement('p');
+    const cForm = createForm();
 
     //Modal base styling
     modalContainer.setAttribute('id', 'myModal');
@@ -12,15 +13,14 @@ const openModal = ()=>{
     closebtn.classList.add('close');
     modalContainer.classList.add('modal');
     closebtn.textContent = 'X';
-    modalText.textContent = 'Some text in the modal';
 
     //Close button function
     closebtn.onclick = () =>{
         modalContainer.style.display = 'none';
     }
 
-
-    modalContent.appendChild(modalText);
+    //Append to modalcontent div
+    modalContent.appendChild(cForm);
     modalContent.appendChild(closebtn);
 
     modalContainer.appendChild(modalContent);

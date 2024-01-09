@@ -2,7 +2,6 @@ import './styles.css';
 import addItemBtn from './addItem';
 import openModal from './openModal';
 
-
 function createIndex(){
     //DOM creation of header and call for content in body
     const content = document.getElementById('content');
@@ -10,21 +9,22 @@ function createIndex(){
     const header = document.querySelector('.welcome');
     //import functions
     const addBtn = addItemBtn();
-    const oModal = openModal();
+    const oModalContainer = openModal();
     
     header.textContent = 'Welcome to your To-Do List!';
 
 
 
+
     //Modal pop up
     addBtn.onclick = () =>{
-        console.log('button clicked');
-        oModal.style.display = 'flex';
+        oModalContainer.style.display = 'flex';
     };
 
     //Append all elements to intended parents
-    document.body.appendChild(oModal);
     document.body.appendChild(header);
+    document.body.appendChild(oModalContainer);
+
     content.appendChild(addBtn);
     content.appendChild(itemContainer);
 

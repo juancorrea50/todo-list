@@ -12,7 +12,7 @@ class item {
 }
 
 const createItem = () =>{
-    //take in the values from the modal to create a new item
+    //take in the values from the form to create a new item
     const newItem = new item();
 
     //Return the item 
