@@ -18,11 +18,10 @@ const openModal = ()=>{
     closebtn.onclick = () =>{
         modalContainer.style.display = 'none';
     }
-
+    
     //Append to modalcontent div
     modalContent.appendChild(cForm);
     modalContent.appendChild(closebtn);
-
     modalContainer.appendChild(modalContent);
     
     return modalContainer;

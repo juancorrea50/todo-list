@@ -9,21 +9,19 @@ function createIndex(){
     const header = document.querySelector('.welcome');
     //import functions
     const addBtn = addItemBtn();
-    const oModalContainer = openModal();
+    const oModel = openModal();
     
-    header.textContent = 'Welcome to your To-Do List!';
-
-
-
+    header.textContent = '        Welcome to your To-Do List!\r\n';
+    header.textContent += 'Please click the + button to add an item';
 
     //Modal pop up
     addBtn.onclick = () =>{
-        oModalContainer.style.display = 'flex';
+        oModel.style.display = 'flex';
     };
 
     //Append all elements to intended parents
     document.body.appendChild(header);
-    document.body.appendChild(oModalContainer);
+    document.body.appendChild(oModel);
 
     content.appendChild(addBtn);
     content.appendChild(itemContainer);

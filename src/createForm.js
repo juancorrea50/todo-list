@@ -1,6 +1,5 @@
 const createForm = () => {
     //Create form elements
-
     const formEl = document.createElement('form');
     const titleEl = document.createElement('label');
     const titleIn = document.createElement('input');
@@ -11,7 +10,6 @@ const createForm = () => {
     const notesEl = document.createElement('textarea');
     const submitBtn = document.createElement('input');
     //Set attribute tags
-
     formEl.setAttribute('id', 'item-form');
     titleEl.setAttribute('for', 'title');
     titleIn.setAttribute('type', 'text');
@@ -34,8 +32,22 @@ const createForm = () => {
     titleEl.textContent = 'Title: ';
     descEl.textContent = 'Description: ';
     prioEl.textContent = 'Priority: ';
-    notesEl.textContent = 'Notes ';
+    notesEl.placeholder = 'Notes...';
     submitBtn.textContent = 'Submit';
+    //Submit button function
+    function submitFunction(e) {
+        //modal access
+        const modal = formEl.parentElement.parentElement;
+        //prevent default submit behaviour
+        e.preventDefault();
+        //First
+        console.log('clicked');
+        //Submit behaviour
+        
+        //Last
+        modal.style.display = 'none';
+    }
+    submitBtn.addEventListener('click', submitFunction);
 
     //Append form elements
     formEl.appendChild(titleEl);
