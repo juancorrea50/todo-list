@@ -34,6 +34,9 @@ const createForm = () => {
     prioEl.textContent = 'Priority: ';
     notesEl.placeholder = 'Notes...';
     submitBtn.textContent = 'Submit';
+    //Value array to carry info
+    let valArray =[];
+    valArray.length = 4;
     //Submit button function
     function submitFunction(e) {
         //modal access
@@ -43,7 +46,12 @@ const createForm = () => {
         //First
         console.log('clicked');
         //Submit behaviour
+        valArray[0] = titleIn.value;
+        valArray[1] = descIn.value;
+        valArray[2] = prioIn.value;
+        valArray[3] = notesEl.value;
 
+        console.log(valArray);
         //Last
         modal.style.display = 'none';
     }
@@ -60,6 +68,6 @@ const createForm = () => {
     formEl.appendChild(notesEl);
     formEl.appendChild(submitBtn);
 
-    return formEl;
+    return {formEl, valArray};
 }
 export default createForm;

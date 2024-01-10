@@ -11,11 +11,4 @@ class item {
     }
 }
 
-const createItem = () =>{
-    //take in the values from the form to create a new item
-    const newItem = new item();
-
-    //Return the item 
-    return newItem;
-}
-export default createItem;
+export default item;

@@ -2,6 +2,7 @@ import './styles.css';
 import addItemBtn from './addItem';
 import openModal from './openModal';
 import createForm from './createForm';
+import item from './createItem';
 
 function createIndex(){
     //DOM creation of header and call for content in body
@@ -11,14 +12,15 @@ function createIndex(){
     //import functions
     const addBtn = addItemBtn();
     const oModel = openModal();
-    const cForm = createForm();
-    //create a shortcut to the modal div
+    const cForm = createForm().formEl;
+    //Create a shortcut to the modal div
     const oModelContent = oModel.childNodes[0];
     
+    //Header text
     header.textContent = '        Welcome to your To-Do List!\r\n';
     header.textContent += 'Please click the + button to add an item';
 
-    //Modal pop up
+    //Pop up modal on click
     addBtn.onclick = () =>{
         oModel.style.display = 'flex';
     };
