@@ -41,8 +41,6 @@ function createIndex(){
     const oModelContent = oModel.childNodes[0];
     const sbmButton = createForm().submitBtn;
 
-
-
     //Header text
     header.textContent = '        Welcome to your To-Do List!\r\n';
     header.textContent += 'Please click the + button to add an item';
@@ -54,12 +52,14 @@ function createIndex(){
 
     //Submit button function
     function submitFunction(e) {
-        //form access
+        //Insert logic after submit here//
+
+        //Form access
         const titleIn = cForm.childNodes[1];
         const descIn = cForm.childNodes[3];
         const prioIn = cForm.childNodes[5];
         const notesEl = cForm.childNodes[6];
-        //prevent default submit behaviour
+        //Prevent default submit behaviour
         e.preventDefault();
         //Create new item
         let newItem = new item(titleIn.value, descIn.value, prioIn.value, notesEl.value);
@@ -72,7 +72,7 @@ function createIndex(){
     }
 
 
-    //button functionality
+    //Button functionality
     sbmButton.addEventListener('click', submitFunction);
     //Append the button to the form to keep logic in index.js
     cForm.appendChild(sbmButton);
