@@ -43,10 +43,11 @@ const createForm = () => {
         //First
         console.log('clicked');
         //Submit behaviour
-        
+
         //Last
         modal.style.display = 'none';
     }
+    
     submitBtn.addEventListener('click', submitFunction);
 
     //Append form elements

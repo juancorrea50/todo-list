@@ -1,11 +1,8 @@
-import createForm from "./createForm";
-
 const openModal = ()=>{
     //Create elements in modal
     const modalContainer = document.createElement('div');
     const modalContent = document.createElement('div');
     const closebtn = document.createElement('span');
-    const cForm = createForm();
 
     //Modal base styling
     modalContainer.setAttribute('id', 'myModal');
@@ -18,9 +15,14 @@ const openModal = ()=>{
     closebtn.onclick = () =>{
         modalContainer.style.display = 'none';
     }
-    
+    //Close when clicking outside of modal
+    window.onclick = function(event){
+        if(event.target == modalContainer){
+            modalContainer.style.display = 'none';
+        }
+    }
+
     //Append to modalcontent div
-    modalContent.appendChild(cForm);
     modalContent.appendChild(closebtn);
     modalContainer.appendChild(modalContent);
     
