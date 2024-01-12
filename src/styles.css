@@ -8,10 +8,12 @@
 }
 #content{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: start;
-    justify-content: center;
+    justify-content: start;
     padding: 25px;
+    gap: 200px;
 }
 #content > button {
     display: flex;
@@ -78,4 +80,14 @@
   @keyframes animatetop {
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}
+  }
+  .item-element-container{
+    display: flex;
+    height: 50px;
+    width: auto;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .item-element-container > h3 {
+    text-overflow:ellipsis;
   }
