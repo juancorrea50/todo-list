@@ -45,12 +45,12 @@ function createIndex(){
     //Header text
     header.textContent = '        Welcome to your To-Do List!\r\n';
     header.textContent += 'Please click the + button to add an item';
-
+    //1//
     //Pop up modal on click
     addBtn.onclick = () =>{
         oModel.style.display = 'flex';
     };
-
+    //2//
     //Submit button function
     function submitFunction(e) {
         //Prevent default submit behaviour
@@ -81,12 +81,20 @@ function createIndex(){
         //Close Modal
         oModel.style.display = 'none';
     }
-    //Create item after changing the values of the item
+    //3//
+    //Extend the created item div to reveal all of the information. Onclick function for the divs.
 
-    //Button functionality
+    //4//
+    //Update button to append into the div. Use button
+
+    //5//
+    //Delete item when completed. Use button
+
+    //Button functionality carry information into appended divs
     sbmButton.addEventListener('click', submitFunction);
-    //Append the button to the form to keep logic in index.js
+    //Append the button to the form to keep logic in index.js and prevent importing into the form node (SOLID principles).
     cForm.appendChild(sbmButton);
+
     //Append all elements to intended parents
     document.body.appendChild(header);
     document.body.appendChild(oModel);
