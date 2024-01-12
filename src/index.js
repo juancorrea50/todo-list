@@ -3,48 +3,61 @@ import addItemBtn from './addItem';
 import openModal from './openModal';
 import createForm from './createForm';
 import addItemEl from './addItemEl';
-
-class item {
-    //Due date not added as expected to include the date function from import
-    constructor(title,desc,prio,notes){
-        this.title = title;
-        this.desc = desc;
-        this.prio = prio;
-        this.notes = notes;
-    };
-    printItem = () => {
-        return `${this.title} ${this.desc} ${this.prio} ${this.notes}`;
-    };
-    setTitle(title){
-        this.title = title;
-    };
-    setDesc(desc){
-        this.desc = desc;
-    };
-    setPrio(prio){
-        this.prio = prio;
-    };
-    setNotes(notes){
-        this.notes = notes;
-    };
-}
+import item from './createItem';
 
 function createIndex(){
-    //DOM creation of header and call for content in body
+    //DOM creation of header and call for content in body element
     const content = document.getElementById('content');
     const header = document.querySelector('.welcome');
-    //import functions
+    //Import functions
     const addBtn = addItemBtn();
     const oModel = openModal();
     const cForm = createForm().formEl;
-
-    //Create a shortcut to the modal div
-    const oModelContent = oModel.childNodes[0];
     const sbmButton = createForm().submitBtn;
-
+    const oModelContent = oModel.childNodes[0];
+    let newItem = new item();
     //Header text
     header.textContent = '        Welcome to your To-Do List!\r\n';
     header.textContent += 'Please click the + button to add an item';
+    //Functions to load and save items
+
+    //Load Items
+    function popStorage(){
+        localStorage.setItem('savedItem', JSON.stringify(newItem));
+    
+        setItems();
+    }
+    //Save items
+    function setItems(){
+        let itemCall = JSON.parse(localStorage.getItem('savedItem'));
+        const aItemEl = addItemEl();
+        //Variables to fetch child nodes from parent element
+        const t = aItemEl.childNodes[0];
+        const d = aItemEl.childNodes[1];
+        const p = aItemEl.childNodes[2];
+        const n = aItemEl.childNodes[3];
+        //Use item values to populate text content of the elements
+        t.textContent += itemCall.title;
+        d.textContent += itemCall.desc;
+        p.textContent += itemCall.prio;
+        n.textContent += itemCall.notes;
+    
+        //console log the item itself for record
+        console.log(itemCall);
+        //append to content 
+        content.appendChild(aItemEl);
+    }
+    //Function to initiate and populate items if there are no saved items
+    function loadItems(){
+        //Populate storage
+        if(!localStorage.getItem('savedItem')){
+            popStorage();
+        } else {
+            setItems();
+        }
+    }
+    
+
     //1//
     //Pop up modal on click
     addBtn.onclick = () =>{
@@ -53,33 +66,43 @@ function createIndex(){
     //2//
     //Submit button function
     function submitFunction(e) {
-        //Prevent default submit behaviour
-        e.preventDefault();
-        //Insert logic after submit here//
-        //create new item element with text here
-        const aItemEl = addItemEl();
-        const t = aItemEl.childNodes[0];
-        const d = aItemEl.childNodes[1];
-        const p = aItemEl.childNodes[2];
-        const n = aItemEl.childNodes[3];
-        //Form access
-        const titleIn = cForm.childNodes[1];
-        const descIn = cForm.childNodes[3];
-        const prioIn = cForm.childNodes[5];
-        const notesEl = cForm.childNodes[6];
-        //Add text content to the divs from addItemEl
-        t.textContent += titleIn.value;
-        d.textContent += descIn.value;
-        p.textContent += prioIn.value;
-        n.textContent += notesEl.value;
-        //Print new item
-        console.log('submitted');
-        //Reset value fields
-        cForm.reset();
-        //Append child to content every submit
-        content.appendChild(aItemEl);
-        //Close Modal
-        oModel.style.display = 'none';
+        //1//
+            //Prevent default submit behaviour
+            e.preventDefault();
+        //2//
+            //Insert logic after submit here//
+            //Use import of addItemElement and call it's children
+            const aItemEl = addItemEl();
+            const t = aItemEl.childNodes[0];
+            const d = aItemEl.childNodes[1];
+            const p = aItemEl.childNodes[2];
+            const n = aItemEl.childNodes[3];
+            //Form access to derive values from form element
+            const titleIn = cForm.childNodes[1];
+            const descIn = cForm.childNodes[3];
+            const prioIn = cForm.childNodes[5];
+            const notesEl = cForm.childNodes[6];
+        //3//
+            //Add text content to the divs from addItemEl
+            t.textContent += titleIn.value;
+            d.textContent += descIn.value;
+            p.textContent += prioIn.value;
+            n.textContent += notesEl.value;
+            //Set item variables
+            newItem.title = titleIn.value;
+            newItem.desc = descIn.value;
+            newItem.prio = prioIn.value;
+            newItem.notes = notesEl.value;
+            console.log(newItem.printItem());
+        //4//
+            //Reset value fields
+            cForm.reset();
+        //5//
+            //Append child to content every submit
+            content.appendChild(aItemEl);
+        //6//
+            //Close Modal
+            oModel.style.display = 'none';
     }
     //3//
     //Extend the created item div to reveal all of the information. Onclick function for the divs.
@@ -101,9 +124,7 @@ function createIndex(){
 
     oModelContent.insertBefore(cForm,oModelContent.firstChild);
     content.appendChild(addBtn);
-
-
-
+    loadItems();
     return content;
 }
 document.body.appendChild(createIndex());
