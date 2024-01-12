@@ -87,6 +87,7 @@
     width: auto;
     flex-direction: column;
     overflow: hidden;
+    border: solid black 2px;
   }
   .item-element-container > h3 {
     text-overflow:ellipsis;

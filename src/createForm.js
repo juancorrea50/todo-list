@@ -25,6 +25,7 @@ const createForm = () => {
     prioIn.setAttribute('type', 'number');
     prioIn.setAttribute('id', 'priority');
     prioIn.setAttribute('name', 'priority');
+    prioIn.setAttribute('min', '1');
     notesEl.setAttribute('form', 'item-form');
     notesEl.setAttribute('rows', '6');
     notesEl.setAttribute('cols', '50');
