@@ -16,11 +16,12 @@ function createIndex(){
     const sbmButton = createForm().submitBtn;
     const oModelContent = oModel.childNodes[0];
     let newItem = new item();
+
     //Header text
     header.textContent = '        Welcome to your To-Do List!\r\n';
     header.textContent += 'Please click the + button to add an item';
-    //Functions to load and save items
 
+    //Functions to load and save items//
     //Load Items
     function popStorage(){
         localStorage.setItem('savedItem', JSON.stringify(newItem));
@@ -42,9 +43,9 @@ function createIndex(){
         p.textContent += itemCall.prio;
         n.textContent += itemCall.notes;
     
-        //console log the item itself for record
+        //Console log the item itself for record
         console.log(itemCall);
-        //append to content 
+        //Append to content 
         content.appendChild(aItemEl);
     }
     //Function to initiate and populate items if there are no saved items
@@ -113,11 +114,10 @@ function createIndex(){
     //5//
     //Delete item when completed. Use button
 
-    //Button functionality carry information into appended divs
+    //Button functionality
     sbmButton.addEventListener('click', submitFunction);
     //Append the button to the form to keep logic in index.js and prevent importing into the form node (SOLID principles).
     cForm.appendChild(sbmButton);
-
     //Append all elements to intended parents
     document.body.appendChild(header);
     document.body.appendChild(oModel);
@@ -125,6 +125,8 @@ function createIndex(){
     oModelContent.insertBefore(cForm,oModelContent.firstChild);
     content.appendChild(addBtn);
     loadItems();
+    //Reset save and load
+    //localStorage.clear();
     return content;
 }
 document.body.appendChild(createIndex());
