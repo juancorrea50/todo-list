@@ -5,6 +5,8 @@ const createForm = () => {
     const formEl = document.createElement('form');
     const titleEl = document.createElement('label');
     const titleIn = document.createElement('input');
+    const dateLabel = document.createElement('label');
+    const dateIn = document.createElement('input');
     const descEl = document.createElement('label');
     const descIn = document.createElement('input');
     const prioEl = document.createElement('label');
@@ -17,6 +19,10 @@ const createForm = () => {
     titleIn.setAttribute('type', 'text');
     titleIn.setAttribute('id', 'title');
     titleIn.setAttribute('name', 'title');
+    dateLabel.setAttribute('for', 'due-date');
+    dateIn.setAttribute('type', 'date');
+    dateIn.setAttribute('id', 'due-date');
+    dateIn.setAttribute('name', 'due-date');
     descEl.setAttribute('for', 'description');
     descIn.setAttribute('type', 'text');
     descIn.setAttribute('id', 'description');
@@ -34,6 +40,7 @@ const createForm = () => {
     //Add text to fields
     titleEl.textContent = 'Title: ';
     titleIn.placeholder = 'Title: ';
+    dateLabel.textContent = 'Date due: ';
     descEl.textContent = 'Description: ';
     prioEl.textContent = 'Priority: ';
     notesEl.placeholder = 'Notes...';
@@ -45,6 +52,8 @@ const createForm = () => {
     //Append form elements
     formEl.appendChild(titleEl);
     formEl.appendChild(titleIn);
+    formEl.appendChild(dateLabel);
+    formEl.appendChild(dateIn);
     formEl.appendChild(descEl);
     formEl.appendChild(descIn);
     formEl.appendChild(prioEl);

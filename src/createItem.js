@@ -1,4 +1,8 @@
+import format from 'date-fns';
 class item {
+    set setDueDate(val){
+        this.dueDate = val;
+    }
     set setTitle(val){
         this.title = val;
     }

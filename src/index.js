@@ -5,6 +5,7 @@ import createForm from './createForm';
 import addItemEl from './addItemEl';
 import item from './createItem';
 
+
 function createIndex(){
     //DOM creation of header and call for content in body element
     const content = document.getElementById('content');
