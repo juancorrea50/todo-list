@@ -26,43 +26,36 @@ function createIndex(){
     //Functions to load and save items//
     //Load Items
     function popStorage(){
-        localStorage.setItem('savedItem', JSON.stringify(newItem));
-        
-        setItems();
-        
+        setItems(); 
     }
     //Save items
     function setItems(){
-        let itemCall = JSON.parse(localStorage.getItem('savedItem'));
+
+        let arrayItemCall = JSON.parse(localStorage.getItem('savedArray'));
         //Console log the item itself for record
-        console.log(itemCall);
-        //Append to content if title is undefined  
-        if(itemCall.title != undefined){
+        console.log(arrayItemCall);
+        //Append to content if title is undefined
+        
+        arrayItemCall.forEach(item => {
             const aItemEl = addItemEl();
             //Variables to fetch child nodes from parent element
             const t = aItemEl.childNodes[0];
-            const d = aItemEl.childNodes[1];
-            const p = aItemEl.childNodes[2];
-            const n = aItemEl.childNodes[3];
+            const dd = aItemEl.childNodes[1];
+            const d = aItemEl.childNodes[2];
+            const p = aItemEl.childNodes[3];
+            const n = aItemEl.childNodes[4];
             //Use item values to populate text content of the elements
-            t.textContent += itemCall.title;
-            d.textContent += itemCall.desc;
-            p.textContent += itemCall.prio;
-            n.textContent += itemCall.notes;
+            t.textContent += item.title;
+            dd.textContent += item.dueDate;
+            d.textContent += item.desc;
+            p.textContent += item.prio;
+            n.textContent += item.notes;
 
-            content.appendChild(aItemEl);    
-        }
+            content.appendChild(aItemEl); 
+        });
+   
     }
     //Function to initiate and populate items if there are no saved items
-    function loadItems(){
-        //Populate storage
-        if(!localStorage.getItem('savedItem')){
-            popStorage();
-        } else {
-            setItems();
-        }
-    }
-    
 
     //1//
     //Pop up modal on click
@@ -80,23 +73,27 @@ function createIndex(){
             //Use import of addItemElement and call it's children
             const aItemEl = addItemEl();
             const t = aItemEl.childNodes[0];
-            const d = aItemEl.childNodes[1];
-            const p = aItemEl.childNodes[2];
-            const n = aItemEl.childNodes[3];
+            const dd = aItemEl.childNodes[1];
+            const d = aItemEl.childNodes[2];
+            const p = aItemEl.childNodes[3];
+            const n = aItemEl.childNodes[4];
             //Form access to derive values from form element
             const titleIn = cForm.childNodes[1];
-            const descIn = cForm.childNodes[3];
-            const prioIn = cForm.childNodes[5];
-            const notesEl = cForm.childNodes[6];
+            const dDateIn = cForm.childNodes[3]
+            const descIn = cForm.childNodes[5];
+            const prioIn = cForm.childNodes[7];
+            const notesEl = cForm.childNodes[8];
         //3//
             //Add text content to the divs from addItemEl
             t.textContent += titleIn.value;
+            dd.textContent += dDateIn.value;
             d.textContent += descIn.value;
             p.textContent += prioIn.value;
             n.textContent += notesEl.value;
             //Construct new item every submite
             let newItem = new item();
             newItem.title = titleIn.value;
+            newItem.dueDate = dDateIn.value;
             newItem.desc = descIn.value;
             newItem.prio = prioIn.value;
             newItem.notes = notesEl.value;
@@ -110,12 +107,31 @@ function createIndex(){
             //push new item and print new array for record
             itemArray.push(newItem);
             console.log(itemArray);
+            localStorage.setItem('savedArray', JSON.stringify(itemArray));
         //6//
             //Close Modal
             oModel.style.display = 'none';
     }
     //3//
     //Extend the created item div to reveal all of the information. Onclick function for the divs.
+    content.addEventListener('click', (e)=>{
+        const contChildren = content.childNodes;
+
+        console.log(e.target.getAttribute('class'));
+        console.log(e.target.getAttribute('id'));
+        if(e.target.getAttribute('class') == 'item-element-container'&& e.target.getAttribute('id') == 'null' || e.target.getAttribute('class') == 'item-element-container' && e.target.getAttribute('id') == null){
+
+            e.target.setAttribute('id', 'selected');
+
+            console.log('Item Selected');
+            contChildren.forEach((item)=>{
+                if(item.getAttribute('id') != 'selected'){
+                    item.setAttribute('id', 'null');
+                }
+            })   
+        }
+
+    });
 
     //4//
     //Update button to change item information into the div. (Buttons only appear on extend)
@@ -133,7 +149,7 @@ function createIndex(){
 
     oModelContent.insertBefore(cForm,oModelContent.firstChild);
     content.appendChild(addBtn);
-    loadItems();
+    setItems();
     //Reset save and load
     //localStorage.clear();
     return content;

@@ -89,6 +89,12 @@
     overflow: hidden;
     border: solid black 2px;
   }
+  #selected{
+    height: auto;
+  }
   .item-element-container > h3 {
     text-overflow:ellipsis;
+  }
+  h2{
+    height: .5px;
   }
