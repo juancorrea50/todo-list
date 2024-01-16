@@ -16,7 +16,8 @@ function createIndex(){
     const cForm = createForm().formEl;
     const sbmButton = createForm().submitBtn;
     const oModelContent = oModel.childNodes[0];
-    let newItem = new item();
+    
+    let itemArray = [];
 
     //Header text
     header.textContent = '        Welcome to your To-Do List!\r\n';
@@ -26,28 +27,31 @@ function createIndex(){
     //Load Items
     function popStorage(){
         localStorage.setItem('savedItem', JSON.stringify(newItem));
-    
+        
         setItems();
+        
     }
     //Save items
     function setItems(){
         let itemCall = JSON.parse(localStorage.getItem('savedItem'));
-        const aItemEl = addItemEl();
-        //Variables to fetch child nodes from parent element
-        const t = aItemEl.childNodes[0];
-        const d = aItemEl.childNodes[1];
-        const p = aItemEl.childNodes[2];
-        const n = aItemEl.childNodes[3];
-        //Use item values to populate text content of the elements
-        t.textContent += itemCall.title;
-        d.textContent += itemCall.desc;
-        p.textContent += itemCall.prio;
-        n.textContent += itemCall.notes;
-    
         //Console log the item itself for record
         console.log(itemCall);
-        //Append to content 
-        content.appendChild(aItemEl);
+        //Append to content if title is undefined  
+        if(itemCall.title != undefined){
+            const aItemEl = addItemEl();
+            //Variables to fetch child nodes from parent element
+            const t = aItemEl.childNodes[0];
+            const d = aItemEl.childNodes[1];
+            const p = aItemEl.childNodes[2];
+            const n = aItemEl.childNodes[3];
+            //Use item values to populate text content of the elements
+            t.textContent += itemCall.title;
+            d.textContent += itemCall.desc;
+            p.textContent += itemCall.prio;
+            n.textContent += itemCall.notes;
+
+            content.appendChild(aItemEl);    
+        }
     }
     //Function to initiate and populate items if there are no saved items
     function loadItems(){
@@ -90,18 +94,22 @@ function createIndex(){
             d.textContent += descIn.value;
             p.textContent += prioIn.value;
             n.textContent += notesEl.value;
-            //Set item variables
+            //Construct new item every submite
+            let newItem = new item();
             newItem.title = titleIn.value;
             newItem.desc = descIn.value;
             newItem.prio = prioIn.value;
             newItem.notes = notesEl.value;
-            console.log(newItem.printItem());
+            console.log(newItem);
         //4//
             //Reset value fields
             cForm.reset();
         //5//
             //Append child to content every submit
             content.appendChild(aItemEl);
+            //push new item and print new array for record
+            itemArray.push(newItem);
+            console.log(itemArray);
         //6//
             //Close Modal
             oModel.style.display = 'none';
@@ -110,10 +118,10 @@ function createIndex(){
     //Extend the created item div to reveal all of the information. Onclick function for the divs.
 
     //4//
-    //Update button to append into the div. Use button
+    //Update button to change item information into the div. (Buttons only appear on extend)
 
     //5//
-    //Delete item when completed. Use button
+    //Delete item when completed. Only appears when extended
 
     //Button functionality
     sbmButton.addEventListener('click', submitFunction);
