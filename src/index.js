@@ -26,12 +26,14 @@ function createIndex(){
     //Functions to load and save items//
     //Load Items
     function popStorage(){
+        localStorage.setItem('savedArray',JSON.stringify(itemArray));
         setItems(); 
     }
     //Save items
     function setItems(){
 
         let arrayItemCall = JSON.parse(localStorage.getItem('savedArray'));
+        itemArray = arrayItemCall;
         //Console log the item itself for record
         console.log(arrayItemCall);
         //Append to content if title is undefined
@@ -117,18 +119,13 @@ function createIndex(){
     content.addEventListener('click', (e)=>{
         const contChildren = content.childNodes;
 
-        console.log(e.target.getAttribute('class'));
-        console.log(e.target.getAttribute('id'));
+        /*console.log(e.target.getAttribute('class'));
+        console.log(e.target.getAttribute('id'));*/
         if(e.target.getAttribute('class') == 'item-element-container'&& e.target.getAttribute('id') == 'null' || e.target.getAttribute('class') == 'item-element-container' && e.target.getAttribute('id') == null){
 
             e.target.setAttribute('id', 'selected');
 
             console.log('Item Selected');
-            contChildren.forEach((item)=>{
-                if(item.getAttribute('id') != 'selected'){
-                    item.setAttribute('id', 'null');
-                }
-            })   
         }
 
     });
@@ -149,7 +146,11 @@ function createIndex(){
 
     oModelContent.insertBefore(cForm,oModelContent.firstChild);
     content.appendChild(addBtn);
-    setItems();
+    if(!localStorage.getItem('savedArray')){
+        popStorage();
+    } else {
+        setItems();
+    }
     //Reset save and load
     //localStorage.clear();
     return content;
