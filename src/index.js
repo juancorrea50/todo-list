@@ -16,7 +16,7 @@ function createIndex(){
     const cForm = createForm().formEl;
     const sbmButton = createForm().submitBtn;
     const oModelContent = oModel.childNodes[0];
-    
+    //Item Array
     let itemArray = [];
 
     //Header text
@@ -57,7 +57,6 @@ function createIndex(){
         });
    
     }
-    //Function to initiate and populate items if there are no saved items
 
     //1//
     //Pop up modal on click
@@ -121,12 +120,13 @@ function createIndex(){
 
         /*console.log(e.target.getAttribute('class'));
         console.log(e.target.getAttribute('id'));*/
-        if(e.target.getAttribute('class') == 'item-element-container'&& e.target.getAttribute('id') == 'null' || e.target.getAttribute('class') == 'item-element-container' && e.target.getAttribute('id') == null){
+        contChildren.forEach((item) =>{
+            item.setAttribute('id',' ');
+        })
 
-            e.target.setAttribute('id', 'selected');
+        e.target.setAttribute('id', 'selected');
 
-            console.log('Item Selected');
-        }
+        console.log('Item Selected');
 
     });
 
@@ -146,6 +146,7 @@ function createIndex(){
 
     oModelContent.insertBefore(cForm,oModelContent.firstChild);
     content.appendChild(addBtn);
+    //Populate storage if saved array is found in local storage
     if(!localStorage.getItem('savedArray')){
         popStorage();
     } else {
