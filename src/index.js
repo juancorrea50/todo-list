@@ -118,7 +118,7 @@ function createIndex(){
     content.addEventListener('click', (e)=>{
         const contChildren = content.childNodes;
         
-        if(e.target.getAttribute('id') != 'content'){
+        if(e.target.getAttribute('id') != 'content' && contChildren[0].getAttribute('class') != 'add-button'){
             contChildren.forEach((item) =>{
                 item.setAttribute('id',' ');
             })
