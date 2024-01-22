@@ -117,16 +117,17 @@ function createIndex(){
     //Extend the created item div to reveal all of the information. Onclick function for the divs.
     content.addEventListener('click', (e)=>{
         const contChildren = content.childNodes;
+        
+        if(e.target.getAttribute('id') != 'content'){
+            contChildren.forEach((item) =>{
+                item.setAttribute('id',' ');
+            })
+    
+            e.target.setAttribute('id', 'selected');
+    
+            console.log('Item Selected');
+        }
 
-        /*console.log(e.target.getAttribute('class'));
-        console.log(e.target.getAttribute('id'));*/
-        contChildren.forEach((item) =>{
-            item.setAttribute('id',' ');
-        })
-
-        e.target.setAttribute('id', 'selected');
-
-        console.log('Item Selected');
 
     });
 
