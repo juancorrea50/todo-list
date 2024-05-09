@@ -122,8 +122,13 @@ function createIndex(){
             contChildren.forEach((item) =>{
                 item.setAttribute('id',' ');
             })
-    
-            e.target.setAttribute('id', 'selected');
+            if(e.target.nodeName == "DIV"){
+                e.target.setAttribute('id', 'selected');
+            } else if(e.target.nodeName == "H2") {
+                e.target.parentNode.setAttribute('id','selected');
+            }
+            
+            console.log(e.target.nodeName);
     
             console.log('Item Selected');
         }
