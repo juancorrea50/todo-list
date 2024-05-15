@@ -1,14 +1,16 @@
 {
+  "homepage": "http://juancorrea50.github.io/todo-list",
   "name": "todo-list",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "http://juancorrea50.github.io/todo-list",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
     "watch": "webpack --watch",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d ./dist/index.html"
   },
   "author": "",
   "license": "ISC",
