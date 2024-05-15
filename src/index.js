@@ -127,9 +127,6 @@ function createIndex(){
             } else if(e.target.nodeName == "H2") {
                 e.target.parentNode.setAttribute('id','selected');
             }
-            
-            console.log(e.target.nodeName);
-    
             console.log('Item Selected');
         }
 
