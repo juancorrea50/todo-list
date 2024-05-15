@@ -5,9 +5,9 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    //path: path.resolve(__dirname, 'dist'),
+    path: "/home/koju/repos/todo-list",
     filename: 'bundle.js',
-    path: '/',
   },
   plugins:[
     new hwp({
